@@ -1,0 +1,23 @@
+dataconsovapeur:
+  type: pandas.ExcelDataset
+  filepath: data/01_raw/Dataconsovapeur.xlsx
+
+data_echelon:
+  type: pandas.ExcelDataset
+  filepath: data/01_raw/DataEchelon.xlsx
+
+parsed_data_echelon:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/parsed_data_echelon.parquet
+
+parsed_data_conso:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/parsed_data_conso.parquet
+
+correlation_matrix:
+  type: pandas.ParquetDataset
+  filepath: data/04_feature/correlation_matrix.parquet
+
+pca_result:
+  type: pandas.ParquetDataset
+  filepath: data/04_feature/pca_result.parquet
