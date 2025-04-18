@@ -21,7 +21,8 @@ def load_and_describe_data(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 from dataanalyze1st.io.cleaning import smart_clean_dataframe, generate_column_metadata, save_metadata
-
+from dataanalyze1st.io.header_parser import parse_headers
+from dataanalyze1st.io.cleaning import coerce_column_types
 def clean_and_scale_data(df: pd.DataFrame) -> pd.DataFrame:
     """Semantic + smart cleaning, scale numerics, and save metadata."""
     df_cleaned = smart_clean_dataframe(df)
@@ -51,3 +52,9 @@ def perform_pca(df: pd.DataFrame, n_components: int = 2) -> pd.DataFrame:
     pca_df = pd.DataFrame(pcs, columns=[f"PC{i+1}" for i in range(n_components)])
     print("🧬 PCA Explained Variance Ratio:", pca.explained_variance_ratio_)
     return pca_df
+
+def header_detection_uploaded(df):
+    df_parsed, _ = parse_headers(df)
+    df_cleaned, score = coerce_column_types(df_parsed)
+    print(f"📊 Uploaded file cleaned: {score}%")
+    return df_cleaned
