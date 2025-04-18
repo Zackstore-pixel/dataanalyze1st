@@ -21,3 +21,11 @@ correlation_matrix:
 pca_result:
   type: pandas.ParquetDataset
   filepath: data/04_feature/pca_result.parquet
+
+uploaded_file:
+  type: pandas.ExcelDataset
+  filepath: data/01_raw/uploaded_latest.xlsx
+
+cleaned_uploaded_data:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/cleaned_uploaded_data.parquet
