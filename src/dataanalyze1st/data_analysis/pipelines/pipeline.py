@@ -1,6 +1,9 @@
 from kedro.pipeline import Pipeline, node, pipeline
 from dataanalyze1st.io.header_parser import header_detection_node
+from kedro.pipeline import Pipeline, node, pipeline
+from dataanalyze1st.data_analysis.nodes_uploaded import header_detection_uploaded
 from dataanalyze1st.data_analysis.nodes.nodes import (
+
     load_and_describe_data,
     clean_and_scale_data,
     compute_correlation_matrix,
@@ -48,4 +51,16 @@ def create_pipeline(**kwargs) -> Pipeline:
             outputs="pca_result",
             name="pca_node"
         ),
+    ])
+from kedro.pipeline import Pipeline, node, pipeline
+from dataanalyze1st.data_analysis.nodes_uploaded import header_detection_uploaded
+
+def create_pipeline(**kwargs) -> Pipeline:
+    return pipeline([
+        node(
+            func=header_detection_uploaded,
+            inputs="uploaded_file",
+            outputs="cleaned_uploaded_data",
+            name="header_detection_uploaded"
+        )
     ])
